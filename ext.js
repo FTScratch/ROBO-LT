@@ -1,3 +1,4 @@
+
 function getButtonState(state) {
 	return Lang.get(state);
 }
@@ -9,7 +10,7 @@ function getLightBarrierState(state) {
 var Lang = {
 	
 	// browser's language code
-	langCode: navigator.language || navigator.userLanguage,
+	langCode: (navigator.language || navigator.userLanguage).substr(0,2),
 	
 	trans: {
 		
@@ -58,7 +59,9 @@ var Lang = {
 		return (v1) ? (v1) : (v2);
 	}
 	
-};var IO = {
+};
+
+var IO = {
 
 	// the URL of the host application interfacing the ROBO-LT
 	host: 'http://localhost:8000/',
@@ -115,7 +118,9 @@ var Lang = {
 	},
 
 	
-};(function(ext) {
+};
+
+(function(ext) {
 	
 	// the current sensor values from the device
 	ext.currentValues = null;
@@ -223,8 +228,8 @@ var Lang = {
 	ext.lightBarrierChange = function(sensor, direction) {
 		var diff = this.getInputDelta(sensor);
 		if (diff === false) {return false;}
-		if (direction == getLightBarrierState('closes'))	{return diff < -20;}		// 20% down
-		if (direction == getLightBarrierState('opens'))		{return diff < +20;}		// 20% up
+		if (direction == getLightBarrierState('closes'))	{return diff < +15;}		// 15% up
+		if (direction == getLightBarrierState('opens'))		{return diff < -15;}		// 15% down
 		return false;
 	}
 	

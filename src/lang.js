@@ -1,3 +1,4 @@
+
 function getButtonState(state) {
 	return Lang.get(state);
 }
@@ -9,7 +10,7 @@ function getLightBarrierState(state) {
 var Lang = {
 	
 	// browser's language code
-	langCode: navigator.language || navigator.userLanguage,
+	langCode: (navigator.language || navigator.userLanguage).substr(0,2),
 	
 	trans: {
 		

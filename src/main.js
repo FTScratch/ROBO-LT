@@ -1,3 +1,4 @@
+
 (function(ext) {
 	
 	// the current sensor values from the device
@@ -106,8 +107,8 @@
 	ext.lightBarrierChange = function(sensor, direction) {
 		var diff = this.getInputDelta(sensor);
 		if (diff === false) {return false;}
-		if (direction == getLightBarrierState('closes'))	{return diff < -20;}		// 20% down
-		if (direction == getLightBarrierState('opens'))		{return diff < +20;}		// 20% up
+		if (direction == getLightBarrierState('closes'))	{return diff < +15;}		// 15% up
+		if (direction == getLightBarrierState('opens'))		{return diff < -15;}		// 15% down
 		return false;
 	}
 	
