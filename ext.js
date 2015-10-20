@@ -16,6 +16,7 @@ var Lang = {
 		
 		// german translation
 		de: {
+			evtChange:				'Wenn sich Eingang %m.inputs um > %n ändert',
 			evtButton:				'Wenn Schalter %m.buttons %m.buttonStates',
 			evtLightBarrier:		'Wenn Lichtschranke %m.lightBarrier %m.lightBarrierStates',
 			doSetOutputToPreset:	'Setze Ausgang %m.outputs auf %m.outputValues',
@@ -34,6 +35,7 @@ var Lang = {
 		
 		// english translation
 		en: {
+			evtChange:				'input %m.inputs changed by > %n',
 			evtButton:				'button %m.buttons %m.buttonStates',
 			evtLightBarrier:		'light-barrier %m.lightBarrier %m.lightBarrierStates',
 			doSetOutputToPreset:	'set output %m.outputs to %m.outputValues',
@@ -256,9 +258,9 @@ var IO = {
 		blocks: [
 			
 			// events
-			['h', 'input %m.inputs change > %n %', 'inputChange', 'I1', 50],
 			['h', Lang.get('evtButton'), 'buttonChange', 'I1', getButtonState('pressed')],
 			['h', Lang.get('evtLightBarrier'), 'lightBarrierChange', 'I3', getLightBarrierState('opens')],
+			['h', Lang.get('evtChange'), 'inputChange', 'I1', 50],
 			
 			// gets
 			['r', Lang.get('getSensorValue'), 'getInput', 'I1'],

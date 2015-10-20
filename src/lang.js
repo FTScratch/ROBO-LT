@@ -16,6 +16,7 @@ var Lang = {
 		
 		// german translation
 		de: {
+			evtChange:				'Wenn sich Eingang %m.inputs um > %n ändert',
 			evtButton:				'Wenn Schalter %m.buttons %m.buttonStates',
 			evtLightBarrier:		'Wenn Lichtschranke %m.lightBarrier %m.lightBarrierStates',
 			doSetOutputToPreset:	'Setze Ausgang %m.outputs auf %m.outputValues',
@@ -34,6 +35,7 @@ var Lang = {
 		
 		// english translation
 		en: {
+			evtChange:				'input %m.inputs changed by > %n',
 			evtButton:				'button %m.buttons %m.buttonStates',
 			evtLightBarrier:		'light-barrier %m.lightBarrier %m.lightBarrierStates',
 			doSetOutputToPreset:	'set output %m.outputs to %m.outputValues',
