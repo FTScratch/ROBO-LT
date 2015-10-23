@@ -24,8 +24,8 @@ var Lang = {
 			doReverseMotor:			'laufenden Motor %m.outputs umdrehen',
 			doReset:				'Zurücksetzen',
 			doToggle:				'Ausgang %m.outputs umschalten',
-			getSensorValue:			'Wert von Sensor %m.inputs',
-			getOutputValue:			'Wert von Ausgang %m.outputs',
+			getSensorValue:			'Lese Wert von Sensor %m.inputs',
+			getOutputValue:			'Lese Wert von Ausgang %m.outputs',
 			
 			pressed:				'gedrückt',
 			released:				'losgelassen',
@@ -43,8 +43,8 @@ var Lang = {
 			doReverseMotor:			'reverse running motor %m.outputs',
 			doReset:				'reset',
 			doToggle:				'toggle output %m.outputs',
-			getSensorValue:			'sensor-value %m.inputs',
-			getOutputValue:			'output-value %m.outputs',
+			getSensorValue:			'get value of sensor %m.inputs',
+			getOutputValue:			'get value of output %m.outputs',
 			
 			pressed:				'pressed',
 			released:				'released',
@@ -180,7 +180,7 @@ var IO = {
 	}
 	
 	// get the current value of the idx-th sensor
-	ext.getInput = function(sensor, callback) {
+	ext.getInput = function(sensor) {
 		if (this.currentValues == null) {return 0;}
 		switch(sensor) {
 			case 'I1': return this.currentValues.ax_percent;
@@ -202,13 +202,13 @@ var IO = {
 	}
 	
 	// get the current value of the given output
-	ext.getInput = function(output, callback) {
-		if (this.currentValues == null) {return 0;}
-		switch(output) {
-			case 'M1': return this.currentValues.m1_percent;
-			case 'M1': return this.currentValues.m2_percent;
-		}
-	};
+	//ext.getOutput = function(output, callback) {
+	//	if (this.currentValues == null) {return 0;}
+	//	switch(output) {
+	//		case 'M1': return this.currentValues.m1_percent;
+	//		case 'M1': return this.currentValues.m2_percent;
+	//	}
+	//};
 	
 	// returns true when the given input has changed by more than x %
 	ext.inputChange = function(sensor, difference) {
