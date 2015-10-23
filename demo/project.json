@@ -1,0 +1,47 @@
+{
+	"objName": "Stage",
+	"scripts": [[131, 178, [["FischerTechnik ROBO-LT.buttonChange", "I1", "gedrückt"], ["FischerTechnik ROBO-LT.setOutput", "M1", "100"]]],
+		[383, 178, [["FischerTechnik ROBO-LT.buttonChange", "I1", "losgelassen"], ["FischerTechnik ROBO-LT.setOutput", "M1", 0]]]],
+	"sounds": [],
+	"costumes": [{
+			"costumeName": "robo_lt",
+			"baseLayerID": 1,
+			"baseLayerMD5": "08e5ebe126cbbc9f1a66af279be4288a.png",
+			"bitmapResolution": 2,
+			"rotationCenterX": 480,
+			"rotationCenterY": 360
+		}],
+	"currentCostumeIndex": 0,
+	"penLayerMD5": "5c81a336fab8be57adc039a8a2b33ca9.png",
+	"penLayerID": 0,
+	"tempoBPM": 60,
+	"videoAlpha": 0.5,
+	"children": [],
+	"info": {
+		"savedExtensions": [{
+				"extensionName": "FischerTechnik ROBO-LT",
+				"blockSpecs": [["h", "Wenn Schalter %m.buttons %m.buttonStates", "buttonChange", "I1", "gedrückt"],
+					["h", "Wenn Lichtschranke %m.lightBarrier %m.lightBarrierStates", "lightBarrierChange", "I3", "öffnet"],
+					["h", "Wenn sich Eingang %m.inputs um > %n ändert", "inputChange", "I1", 50],
+					["r", "Lese Wert von Sensor %m.inputs", "getInput", "I1"],
+					["r", "Lese Wert von Ausgang %m.outputs", "getOutput", "M1"],
+					[" ", "Setze Ausgang %m.outputs auf %m.outputValues", "setOutput", "M1", 0],
+					[" ", "Setze Ausgang %m.outputs auf %n", "setOutput", "M1", 0],
+					[" ", "laufenden Motor %m.outputs umdrehen", "setOutputNeg", "M1"],
+					[" ", "Ausgang %m.outputs umschalten", "toggleOutput", "M1"],
+					[" ", "Zurücksetzen", "reset"]],
+				"menus": {
+					"inputs": ["I1", "I2", "I3"],
+					"outputs": ["M1", "M2"],
+					"lightBarrierStates": ["öffnet", "schließt"],
+					"buttonStates": ["gedrückt", "losgelassen"],
+					"buttons": ["I1", "I2"],
+					"outputValues": [-100, -75, -50, -25, 0, 25, 50, 75, 100]
+				},
+				"javascriptURL": "http:\/\/ftscratch.github.io\/ROBO-LT\/ext.js"
+			}],
+		"scriptCount": 2,
+		"spriteCount": 0,
+		"videoOn": false
+	}
+}
