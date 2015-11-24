@@ -7,6 +7,10 @@ function getLightBarrierState(state) {
 	return Lang.get(state);
 }
 
+function getMotorDirection(dir) {
+	return Lang.get(dir);
+}
+
 var Lang = {
 	
 	// browser's language code
@@ -16,40 +20,48 @@ var Lang = {
 		
 		// german translation
 		de: {
-			evtChange:				'Wenn sich Eingang %m.inputs um > %n ändert',
-			evtButton:				'Wenn Schalter %m.buttons %m.buttonStates',
-			evtLightBarrier:		'Wenn Lichtschranke %m.lightBarrier %m.lightBarrierStates',
-			doSetOutputToPreset:	'Setze Ausgang %m.outputs auf %m.outputValues',
-			doSetOutputToVal:		'Setze Ausgang %m.outputs auf %n',
-			doReverseMotor:			'laufenden Motor %m.outputs umdrehen',
-			doReset:				'Zurücksetzen',
-			doToggle:				'Ausgang %m.outputs umschalten',
-			getSensorValue:			'Lese Wert von Sensor %m.inputs',
+			evtButton:				'Wenn Schalter %m.inputs %m.buttonStates',
+			evtLightBarrier:		'Wenn Lichtschranke %m.inputs %m.lightBarrierStates',
+			
+			setLampVal:				'Setze Lampe %m.outputs auf %m.outputValues',
+			setMotorValDir:			'Setze Motor %m.outputs auf %m.outputValues %m.outputDirections',
+			setMotorDir:			'Setze Motor %m.outputs auf %m.outputDirections',
+			setOutputVal:			'Setze Ausgang %m.outputs auf %n',
+			reset:					'Zurücksetzen',
+			
+			getButton:				'Schalter %m.inputs gedrückt?',
+			getLightBarrier:		'Lichtschranke %m.inputs geschlossen?',
 			getOutputValue:			'Lese Wert von Ausgang %m.outputs',
 			
 			pressed:				'gedrückt',
 			released:				'losgelassen',
 			opens:					'öffnet',
 			closes:					'schließt',
+			forward:				'vorwärts',
+			backwards:				'rückwärts',
 		},
 		
 		// english translation
 		en: {
-			evtChange:				'input %m.inputs changed by > %n',
-			evtButton:				'button %m.buttons %m.buttonStates',
-			evtLightBarrier:		'light-barrier %m.lightBarrier %m.lightBarrierStates',
-			doSetOutputToPreset:	'set output %m.outputs to %m.outputValues',
-			doSetOutputToVal:		'set output %m.outputs to %n',
-			doReverseMotor:			'reverse running motor %m.outputs',
-			doReset:				'reset',
-			doToggle:				'toggle output %m.outputs',
-			getSensorValue:			'get value of sensor %m.inputs',
+			evtButton:				'button %m.inputs %m.buttonStates',
+			evtLightBarrier:		'light-barrier %m.inputs %m.lightBarrierStates',
+			
+			setLampVal:				'set lamp %m.outputs to %m.outputValues',
+			setMotorValDir:			'set motor %m.outputs to %m.outputValues %m.outputDirections',
+			setMotorDir:			'set motor %m.outputs to %m.outputDirections',
+			setOutputVal:			'set output %m.outputs to %n',
+			reset:					'reset',
+			
+			getButton:				'button %m.inputs pressed?',
+			getLightBarrier:		'light-barrier %m.inputs closed?',
 			getOutputValue:			'get value of output %m.outputs',
 			
 			pressed:				'pressed',
 			released:				'released',
 			opens:					'opens',
 			closes:					'closes',
+			forward:				'forward',
+			backwards:				'backwards',
 		}
 		
 	},	

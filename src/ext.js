@@ -7,6 +7,10 @@ function getLightBarrierState(state) {
 	return Lang.get(state);
 }
 
+function getMotorDirection(dir) {
+	return Lang.get(dir);
+}
+
 var Lang = {
 	
 	// browser's language code
@@ -16,40 +20,48 @@ var Lang = {
 		
 		// german translation
 		de: {
-			evtChange:				'Wenn sich Eingang %m.inputs um > %n ändert',
-			evtButton:				'Wenn Schalter %m.buttons %m.buttonStates',
-			evtLightBarrier:		'Wenn Lichtschranke %m.lightBarrier %m.lightBarrierStates',
-			doSetOutputToPreset:	'Setze Ausgang %m.outputs auf %m.outputValues',
-			doSetOutputToVal:		'Setze Ausgang %m.outputs auf %n',
-			doReverseMotor:			'laufenden Motor %m.outputs umdrehen',
-			doReset:				'Zurücksetzen',
-			doToggle:				'Ausgang %m.outputs umschalten',
-			getSensorValue:			'Lese Wert von Sensor %m.inputs',
+			evtButton:				'Wenn Schalter %m.inputs %m.buttonStates',
+			evtLightBarrier:		'Wenn Lichtschranke %m.inputs %m.lightBarrierStates',
+			
+			setLampVal:				'Setze Lampe %m.outputs auf %m.outputValues',
+			setMotorValDir:			'Setze Motor %m.outputs auf %m.outputValues %m.outputDirections',
+			setMotorDir:			'Setze Motor %m.outputs auf %m.outputDirections',
+			setOutputVal:			'Setze Ausgang %m.outputs auf %n',
+			reset:					'Zurücksetzen',
+			
+			getButton:				'Schalter %m.inputs gedrückt?',
+			getLightBarrier:		'Lichtschranke %m.inputs geschlossen?',
 			getOutputValue:			'Lese Wert von Ausgang %m.outputs',
 			
 			pressed:				'gedrückt',
 			released:				'losgelassen',
 			opens:					'öffnet',
 			closes:					'schließt',
+			forward:				'vorwärts',
+			backwards:				'rückwärts',
 		},
 		
 		// english translation
 		en: {
-			evtChange:				'input %m.inputs changed by > %n',
-			evtButton:				'button %m.buttons %m.buttonStates',
-			evtLightBarrier:		'light-barrier %m.lightBarrier %m.lightBarrierStates',
-			doSetOutputToPreset:	'set output %m.outputs to %m.outputValues',
-			doSetOutputToVal:		'set output %m.outputs to %n',
-			doReverseMotor:			'reverse running motor %m.outputs',
-			doReset:				'reset',
-			doToggle:				'toggle output %m.outputs',
-			getSensorValue:			'get value of sensor %m.inputs',
+			evtButton:				'button %m.inputs %m.buttonStates',
+			evtLightBarrier:		'light-barrier %m.inputs %m.lightBarrierStates',
+			
+			setLampVal:				'set lamp %m.outputs to %m.outputValues',
+			setMotorValDir:			'set motor %m.outputs to %m.outputValues %m.outputDirections',
+			setMotorDir:			'set motor %m.outputs to %m.outputDirections',
+			setOutputVal:			'set output %m.outputs to %n',
+			reset:					'reset',
+			
+			getButton:				'button %m.inputs pressed?',
+			getLightBarrier:		'light-barrier %m.inputs closed?',
 			getOutputValue:			'get value of output %m.outputs',
 			
 			pressed:				'pressed',
 			released:				'released',
 			opens:					'opens',
 			closes:					'closes',
+			forward:				'forward',
+			backwards:				'backwards',
 		}
 		
 	},	
@@ -144,16 +156,17 @@ var IO = {
 		IO.doGet('reset');
 	};
 	
-	// set the output (in percent) [-100:+100]
-	ext.setOutput = function(output, speed) {
+	// set the output [-100:+100]
+	ext.setOutputPercent = function(output, speed) {
 		switch(output) {
-			case 'M1': IO.doPost('setOutput', {idx: 0, speed: speed}); break;
-			case 'M2': IO.doPost('setOutput', {idx: 1, speed: speed}); break;
+			case 'M1':	IO.doPost('setOutput', {idx: 0, speed: Math.round(speed)}); break;
+			case 'M2':	IO.doPost('setOutput', {idx: 1, speed: Math.round(speed)}); break;
+			default:	throw "error";
 		}
 	};
-	
-	// get the current output (in percent)
-	ext.getOutput = function(output) {
+		
+	// get the current output [-100:+100]
+	ext.getOutputPercent = function(output) {
 		switch(output) {
 			case 'M1':	return this.currentValues.m1_percent;
 			case 'M2':	return this.currentValues.m2_percent;
@@ -161,26 +174,8 @@ var IO = {
 		}
 	}
 	
-	// set the given output to 0
-	ext.setOutputOff = function(output) {
-		this.setOutput(output, 0);
-	}
-	
-	// negate the output (+100? -> -100)
-	ext.setOutputNeg = function(output) {
-		this.setOutput(output, -this.getOutput(output))
-	}
-	
-	// toggle between [0 and 100]
-	ext.toggleOutput = function(output) {
-		var current = this.getOutput(output);
-		if (current === false) {return;}
-		if (current == 0)	{this.setOutput(output, 100);}
-		else				{this.setOutput(output, 0);}
-	}
-	
-	// get the current value of the idx-th sensor
-	ext.getInput = function(sensor) {
+	// get the current value of the Ix input: [0:100]
+	ext.getInputPercent = function(sensor) {
 		if (this.currentValues == null) {return 0;}
 		switch(sensor) {
 			case 'I1': return this.currentValues.ax_percent;
@@ -201,42 +196,6 @@ var IO = {
 		}
 	}
 	
-	// get the current value of the given output
-	//ext.getOutput = function(output, callback) {
-	//	if (this.currentValues == null) {return 0;}
-	//	switch(output) {
-	//		case 'M1': return this.currentValues.m1_percent;
-	//		case 'M1': return this.currentValues.m2_percent;
-	//	}
-	//};
-	
-	// returns true when the given input has changed by more than x %
-	ext.inputChange = function(sensor, difference) {
-		var diff = this.getInputDelta(sensor);
-		if (diff === false) {return false;}
-		return (Math.abs(diff) > difference);
-	}
-	
-	// returns true when the value for the given input changed by +/- 50%
-	ext.buttonChange = function(sensor, direction) {
-		var diff = this.getInputDelta(sensor);
-		if (diff === false) {return false;}
-		if (direction == getButtonState('pressed'))		{return diff < -50;}		// 50% down
-		if (direction == getButtonState('released'))	{return diff < +50;}		// 50% up
-		return false;
-	}
-	
-	// returns true when the value for the given input changed by +/- 20%
-	ext.lightBarrierChange = function(sensor, direction) {
-		var diff = this.getInputDelta(sensor);
-		if (diff === false) {return false;}
-		if (direction == getLightBarrierState('closes'))	{return diff < +15;}		// 15% up
-		if (direction == getLightBarrierState('opens'))		{return diff < -15;}		// 15% down
-		return false;
-	}
-	
-
-	
 	// update the current sensor values from the device
 	ext.doUpdate = function() {
 		IO.doGet('getSensors')
@@ -250,7 +209,66 @@ var IO = {
 	};
 	
 	
+	
+	
+	
+	// get the current [0,1] value for a button attached to Ix
+	ext.getButtonBinary = function(sensor) {
+		return this.getInputPercent(sensor) < 15;
+	}
+	
+	// get the current [0,1] value for a light-barrier attached to Ix
+	ext.getLightBarrierBinary = function(sensor) {
+		return this.getInputPercent(sensor) > 15;
+	}
+	
+	// returns true when the value for the given input changed by +/- 15%
+	ext.onButtonChange = function(sensor, direction) {
+		var diff = this.getInputDelta(sensor);
+		if		(diff === false) {return false;}
+		if		(direction == getButtonState('pressed'))		{return diff < -15;}		// 15% down
+		else if	(direction == getButtonState('released'))		{return diff < +15;}		// 15% up
+		else													throw "error";
+	}
+	
+	// returns true when the value for the given input changed by +/- 15%
+	ext.onLightBarrierChange = function(sensor, direction) {
+		var diff = this.getInputDelta(sensor);
+		if		(diff === false) {return false;}
+		if		(direction == getLightBarrierState('closes'))	{return diff < +15;}		// 15% up
+		else if (direction == getLightBarrierState('opens'))	{return diff < -15;}		// 15% down
+		else													throw "error";
+	}
+	
+	// get the current output of Mx [-8:+8]
+	ext.getOutputVal = function(output) {
+		return Math.round(this.getOutputPercent(output) / 100 * 8)
+	}
 
+	// set he current output of Mx to [-8:+8]
+	ext.setOutputVal = function(output, val) {
+		this.setOutputPercent(output, val * 100 / 8);
+	}
+	
+	// set the brightness of a lamp attached to Mx
+	ext.setLampVal = function(output, val) {
+		this.setOutputVal(output, val);
+	}
+	
+	// set the speed [0:8] and direction of a motor attached to Mx
+	ext.setMotorValDir = function(output, speed, dir) {
+		if		(dir == getMotorDirection('forward'))	{this.setOutputVal(output, +speed);}
+		else if	(dir == getMotorDirection('backwards'))	{this.setOutputVal(output, -speed);}
+		else											throw 'error';
+	}
+
+	// set the direction of a motor attached to Mx
+	ext.setMotorDir = function(output, dir) {
+		var speed = this.getOutputVal(output);
+		if		(dir == getMotorDirection('forward'))	{this.setOutputVal(output, +Math.abs(speed));}
+		else if	(dir == getMotorDirection('backwards'))	{this.setOutputVal(output, -Math.abs(speed));}
+		else											throw 'error';
+	}
 		
 	// Block and block menu descriptions
 	var descriptor = {
@@ -258,30 +276,31 @@ var IO = {
 		blocks: [
 			
 			// events
-			['h', Lang.get('evtButton'), 'buttonChange', 'I1', getButtonState('pressed')],
-			['h', Lang.get('evtLightBarrier'), 'lightBarrierChange', 'I3', getLightBarrierState('opens')],
-			['h', Lang.get('evtChange'), 'inputChange', 'I1', 50],
+			['h', Lang.get('evtButton'),			'onButtonChange',		'I1', getButtonState('pressed')],
+			['h', Lang.get('evtLightBarrier'),		'onLightBarrierChange',	'I3', getLightBarrierState('opens')],
 			
 			// gets
-			['r', Lang.get('getSensorValue'), 'getInput', 'I1'],
-			['r', Lang.get('getOutputValue'), 'getOutput', 'M1'],
+			['b', Lang.get('getButton'),			'getButtonBinary',		'I1'],
+			['b', Lang.get('getLightBarrier'),		'getLightBarrierBinary','I3'],
+			['r', Lang.get('getOutputValue'),		'getOutputVal',			'M1'],
 			
 			// sets
-			[' ', Lang.get('doSetOutputToPreset'), 'setOutput', 'M1', 0],
-			[' ', Lang.get('doSetOutputToVal'), 'setOutput', 'M1', 0],
-			[' ', Lang.get('doReverseMotor'), 'setOutputNeg', 'M1'],
-			[' ', Lang.get('doToggle'), 'toggleOutput', 'M1'],
-			[' ', Lang.get('doReset'), 'reset'],
+			[' ', Lang.get('setLampVal'),			'setLampVal',			'M1', 0],
+			[' ', Lang.get('setMotorValDir'),		'setMotorValDir',		'M1', 0, getMotorDirection('forward')],
+			[' ', Lang.get('setMotorDir'),			'setMotorDir',			'M1', getMotorDirection('forward')],
+			[' ', Lang.get('setOutputVal'),			'setOutputVal',			'M1', 0],
+
+			[' ', Lang.get('reset'),				'reset'],
 			
 		],
 		
 		menus: {
 			inputs:				['I1', 'I2', 'I3'],
-			buttons:			['I1', 'I2'],
 			buttonStates:		[getButtonState('pressed'), getButtonState('released')],
 			lightBarrierStates:	[getLightBarrierState('opens'), getLightBarrierState('closes')],
 			outputs:			['M1', 'M2'],
-			outputValues:		[-100, -75, -50, -25, 0, +25, +50, +75, +100],
+			outputValues:		[0, 1, 2, 3, 4, 5, 6, 7, 8],
+			outputDirections:	[getMotorDirection('forward'), getMotorDirection('backwards')],
 		},
 		
 		url: 'http://www.fischertechnik.de/desktopdefault.aspx/tabid-21/39_read-311/usetemplate-2_column_pano/',
@@ -292,7 +311,7 @@ var IO = {
 	ScratchExtensions.register('FischerTechnik ROBO-LT', descriptor, ext);
 	
 	// start the update loop: periodically fetch sensor values from the device
-	setInterval(ext.doUpdate, 60);
+	setInterval(ext.doUpdate, 55);
 	
 	// ensure the ROBO LT is reset
 	ext.reset();

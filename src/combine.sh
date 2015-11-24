@@ -1,1 +1,1 @@
-cat lang.js io.js main.js > ../ext.js
+cat lang.js io.js main.js > ./ext.js
