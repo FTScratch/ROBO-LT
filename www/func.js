@@ -46,28 +46,27 @@ var Lang = {
 	},
 	
 	de: {
+		
 		about:				'Über',
-		aboutText:			'<b>FTScratch</b> ermöglicht auf PCs bzw. Notebooks mit Microsoft Windows Betriebssystem die Verwendung des Fischertechnik <a href="http://www.fischertechnik.de/desktopdefault.aspx/tabid-21/39_read-311/usetemplate-2_column_pano/">ROBO-LT</a> zusammen mit der einfach zu erlernenden Programmiersprache <a href="http://scratchx.org/">Scratch</a>. So können im Handumdrehen kleine Anwendungen zur Steuerung von Motoren und Lampen mittels Tastern und Lichtschranken erstellt werden. Durch die Vielzahl an Möglichkeiten, die die Programmiersprache Scratch bietet, können auch weitaus größere Programme erstellt werden.',
-		howtoText:			'1) ROBO-LT mit dem PC verbinden<br/>2) Treiber <a href="http://www.fischertechnik.de/home/downloads/Computing.aspx">herunterladen</a> und installieren<br/>3) FTScratch <a href="todo">herunterladen</a>, entpacken und starten. (<small>benötigt .NET Framework 4, i.d.R. auf Windows PCs vorhanden</small>)<br/>4) ScratchX <a href="http://scratchx.org/?url=http://ftscratch.github.io/ROBO-LT/ext.js#scratch">öffnen</a> (<small>Firefox oder Chrome</small>)<br/>5) Loslegen!',
+		aboutText:			'<b>FTScratch</b> ermöglicht auf PCs bzw. Notebooks mit Microsoft Windows Betriebssystem die Verwendung des Fischertechnik <a href="http://www.fischertechnik.de/desktopdefault.aspx/tabid-21/39_read-311/usetemplate-2_column_pano/">ROBO-LT</a> zusammen mit der einfach zu erlernenden Programmiersprache <a href="https://mit.scratch.edu/">Scratch</a>. So können im Handumdrehen kleine Anwendungen zur Steuerung von Motoren und Lampen mittels Tastern und Lichtschranken erstellt werden. Durch die Vielzahl an Möglichkeiten, die die Programmiersprache Scratch bietet, können auch weitaus größere Programme erstellt werden.<br/><br/>Neue Scratch-Erweiterungen, wie FTScratch, verwenden hierzu die Entwicklerversion <a href="http://scratchx.org/">ScratchX</a>.',
+		howtoText:			'1) ROBO-LT mit dem PC verbinden<br/>2) Treiber <a href="http://www.fischertechnik.de/home/downloads/Computing.aspx">herunterladen</a> und installieren<br/>3) FTScratch <a href="http://ftscratch.github.io/ROBO-LT/bin/FTScratch.exe">herunterladen</a> und starten. (<small>benötigt .NET Framework 4, i.d.R. auf Windows PCs vorhanden</small>)<br/>4) ScratchX <a href="http://scratchx.org/?url=http://ftscratch.github.io/ROBO-LT/src/ext.js#scratch">öffnen</a> (<small>Firefox oder Chrome</small>)<br/>5) Loslegen!',
 		blockDesc:			'Blockbeschreibung',
 		blockDescText:		'Aus Gründen der Kompabilität orientieren sich die folgenden Blöcke an RoboPro Light. Die Sprachversion der Blöcke (deutsch / englisch) orientiert sich an Ihrer Browsereinstellung. ',
+		
 		onButton:			'Dieses Ereignis löst aus, sobald ein Taster an Eingang I1 (I2, I3) gedrückt (oder losgelassen) wird.',
 		onLightBarrier:		'Dieses Ereignis löst aus, sobald die Lichtschranke geöffnet (geschlossen) wird, d.h. der Lichtstrahl zwischen einer Lichtquelle und einer Photodiode an Eingang I3 (I1, I2) unterbrochen (oder nicht mehr unterbrochen) wird. Als Lichtquelle kann z.B. eine Glühbirne an M1 (M2) verwendet werden.',
-		//onChange:			'Dieses Ereignis löst aus, sobald sich der Wert des gewählten Eingangs um mehr als den angegebenen Prozentsatz ändert. Dies kann z.B. für eine empfindlichere Erkennung von Unterbrechnungen einer Lichtschrank verwendet werden.',
+
 		getButton:			'Dieser Block fragt ab, ob ein Taster an Eingang I1 (I2, I3) gedrückt ist. Dieser Block läßt sich mit Blöcken aus den Rubriken "Steuerung" und "Operatoren" kombinieren.',
 		getLightBarrier:	'Dieser Block fragt ab, ob eine Lichtschranke an Eingang I3 (I1, I2) geschlossen ist. Dieser Block läßt sich mit Blöcken aus den Rubriken "Steuerung" und "Operatoren" kombinieren.',
-		//getSensor:			'Über diesen Block kann der aktuelle Wert vom gewählten Eingang für Berechnungen oder Bedingungen verwendet werden. Der Wert liegt zwischen 0 (Minimum) und 100 (Maximum).',
 		getOutput:			'Über diesen Block kann der aktuelle Wert von Ausgang M1 (M2) abgefragt und für Berechnungen oder Bedingungen in Kombination mit Blöcken aus den Rubriken "Steuerung", "Operatoren" und "Ereignisse" verwendet werden. Der abgefragte Wert liegt zwischen -8 (Motor rückwärts) und +8 (Motor vorwärts).',
 		
-		setLampVal:			'Über diesen Block kann der Ausgang M1 (M2) für z.B. eine Lampe auf einen Wert von 0...8 gesetzt werden',
+		setLampVal:			'Über diesen Block kann der Ausgang M1 (M2) für z.B. eine Lampe auf einen Wert von 0...8 gesetzt werden.',
 		setMotorValDir:		'Über diesen Block kann der Ausgang M1 (M2) für z.B. einen Motor auf vorwärts (rückwärts) gesetzt werden mit einem Wert von 0...8.',
 		setMotorDir:		'Über diesen Block kann der Ausgang M1 (M2) für z.B. einen Motor zur Änderung der Drehrichtung bei gleichbleibendem Wert auf vorwärts (rückwärts) gesetzt werden.',
 		setOutputVal:		'Mit diesem Block kann der Ausgang M1 (M2) auf einen festen oder einen variablen Wert gesetzt werden, der sich z.B. aus einem eingelesenen Wert (siehe Block "Lese Wert von Ausgang ...") und/oder in Kombination mit Blöcken aus den Rubriken "Steuerung", "Operatoren" und "Ereignisse" ergibt.',
-		//setOutput_1:		'Über diesen Block kann einer der Ausgänge M1 bzw. M2 auf den gewählten Wert gesetzt werden. Die Werte liegen zwischen -8 (Motor rückwärts) und +8 (Motor vorwärts).',
-		//setOutput_2:		'Über diesen Block kann, wie zuvor, der Wert für M1 bzw. M2 gesetzt werden. Der Wert wird hier jedoch nicht fix, sondern in Form einer Variable übergeben, was die Verwendung von Berechnungen erlaubt.',
-		//setOutputReverse:	'Dieser Block ändert die Drehrichtung eines aktuell laufenden Motors an M1 bzw. M2, indem der aktuelle Ausgangswert negiert wird: Aus -50 wird +50, aus +100 wird -100, etc. Ist der Ausgang aktuell mit 0 belegt, findet keine Änderung statt.',
-		//setOutputToggle:	'Dieser Block schaltet den gewählten Ausgang zwischen den beiden Werten 0 und 100 um: Ein sich drehender Motor wird gestoppt, ein gestoppter Motor beginnt sich zu drehen',
+
 		reset:				'Dieser Block setzt den ROBO-LT zurück. Alle Ausgänge werden auf 0 gesetzt.',
+	
 	},
 	
 	en: {
