@@ -68,9 +68,9 @@ var Lang = {
 	
 	// get a translated version for the given constant
 	get: function(what) {
-		var v1 = this.trans[this.langCode][what];
-		var v2 = this.trans['en'][what];
-		return (v1) ? (v1) : (v2);
+		var codes = this.trans[this.langCode];		// requested language
+		if (!codes) { codes = this.trans['en']; }	// fallback
+		return codes[what];
 	}
 	
 };

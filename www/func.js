@@ -42,7 +42,9 @@ var Lang = {
 	
 	get: function(what) {
 		var langCode = (getURLParameter('lang') || navigator.language || navigator.userLanguage).substr(0,2);
-		return this[langCode][what];
+		var translations = this[langCode];					// requested translations
+		if (!translations) { translations = this['en']; }	// fallback
+		return translations[what];
 	},
 	
 	set: function(what, objID) {
@@ -52,9 +54,9 @@ var Lang = {
 	de: {
 		
 		about:				'Über',
-		aboutText:			'<b>FTScratch</b> ermöglicht auf PCs bzw. Notebooks mit Microsoft Windows Betriebssystem die Verwendung des Fischertechnik <a href="http://www.fischertechnik.de/desktopdefault.aspx/tabid-21/39_read-311/usetemplate-2_column_pano/">ROBO-LT</a> zusammen mit der einfach zu erlernenden Programmiersprache <a href="https://scratch.mit.edu">Scratch</a>. So können im Handumdrehen kleine Anwendungen zur Steuerung von Motoren und Lampen mittels Tastern und Lichtschranken erstellt werden. Durch die Vielzahl an Möglichkeiten, die die Programmiersprache Scratch bietet, können auch weitaus größere Programme erstellt werden.<br/><br/>Neue Scratch-Erweiterungen, wie FTScratch, verwenden hierzu die Entwicklerversion <a href="http://scratchx.org/">ScratchX</a>.',
+		aboutText:			'<b>FTScratch</b> ermöglicht auf PCs bzw. Notebooks mit Microsoft Windows Betriebssystem die Verwendung des Fischertechnik <a href="http://www.fischertechnik.de/desktopdefault.aspx/tabid-21/39_read-311/usetemplate-2_column_pano/">ROBO LT</a> zusammen mit der einfach zu erlernenden Programmiersprache <a href="https://scratch.mit.edu">Scratch</a>. So können im Handumdrehen kleine Anwendungen zur Steuerung von Motoren und Lampen mittels Tastern und Lichtschranken erstellt werden. Durch die Vielzahl an Möglichkeiten, die die Programmiersprache Scratch bietet, können auch weitaus größere Programme erstellt werden.<br/><br/>Neue Scratch-Erweiterungen, wie FTScratch, verwenden hierzu die Entwicklerversion <a href="http://scratchx.org/">ScratchX</a>.',
 		
-		howtoText:			'1) ROBO-LT mit dem PC verbinden<br/>2) Treiber <a href="http://www.fischertechnik.de/home/downloads/Computing.aspx">herunterladen</a> und installieren<br/>3) FTScratch <a href="http://ftscratch.github.io/ROBO-LT/bin/FTScratch.exe">herunterladen</a> und starten. (<small>benötigt .NET Framework 4, i.d.R. auf Windows PCs vorhanden</small>)<br/>4) ScratchX mit Erweiterung <a href="http://scratchx.org/?url=http://ftscratch.github.io/ROBO-LT/src/ext.js#scratch">öffnen</a> (<small>Firefox oder Chrome</small>)<br/>5) Loslegen!',
+		howtoText:			'1) ROBO LT mit dem PC verbinden<br/>2) Treiber <a href="http://www.fischertechnik.de/home/downloads/Computing.aspx">herunterladen</a> und installieren<br/>3) FTScratch <a href="http://ftscratch.github.io/ROBO-LT/bin/FTScratch.exe">herunterladen</a> und starten. (<small>benötigt .NET Framework 4, i.d.R. auf Windows PCs vorhanden</small>)<br/>4) ScratchX mit Erweiterung <a href="http://scratchx.org/?url=http://ftscratch.github.io/ROBO-LT/src/ext.js#scratch">öffnen</a> (<small>Firefox oder Chrome</small>)<br/>5) Loslegen!',
 		
 		blockDesc:			'Blockbeschreibung',
 		blockDescText:		'Aus Gründen der Kompabilität orientieren sich die folgenden Blöcke an RoboPro Light. Die Sprachversion der Blöcke (deutsch / englisch) orientiert sich an Ihrer Browsereinstellung. ',
@@ -71,21 +73,21 @@ var Lang = {
 		setMotorDir:		'Über diesen Block kann der Ausgang M1 (M2) für z.B. einen Motor zur Änderung der Drehrichtung bei gleichbleibendem Wert auf vorwärts (rückwärts) gesetzt werden.',
 		setOutputVal:		'Mit diesem Block kann der Ausgang M1 (M2) auf einen festen oder einen variablen Wert gesetzt werden, der sich z.B. aus einem eingelesenen Wert (siehe Block "Lese Wert von Ausgang ...") und/oder in Kombination mit Blöcken aus den Rubriken "Steuerung", "Operatoren" und "Ereignisse" ergibt.',
 
-		reset:				'Dieser Block setzt den ROBO-LT zurück. Alle Ausgänge werden auf 0 gesetzt.',
+		reset:				'Dieser Block setzt den ROBO LT zurück. Alle Ausgänge werden auf 0 gesetzt.',
 	
 	},
 	
 	en: {
 		
 		about:				'About',
-		aboutText:			'<b>FTScratch</b> allows PCs running Microsoft Windows to use the Fischertechnik <a href="http://www.fischertechnik.de/desktopdefault.aspx/tabid-21/39_read-311/usetemplate-2_column_pano/">ROBO-LT</a> in combination with the visual, easy-to-learn programming language <a href="https://scratch.mit.edu">Scratch</a>. Small applications to control motors and indicator lights can be created instantly by means of mini-switches and phototransistors. Due to the variety of opportunities offered by the Scratch programming language, large programs may be developed.<br/><br/>Experimental Extensions to Scratch, such as FTScratch, use the development version <a href="http://scratchx.org/">ScratchX</a>.',
+		aboutText:			'<b>FTScratch</b> allows PCs running Microsoft Windows to use the Fischertechnik <a href="http://www.fischertechnik.de/desktopdefault.aspx/tabid-21/39_read-311/usetemplate-2_column_pano/">ROBO LT</a> in combination with the visual, easy-to-learn programming language <a href="https://scratch.mit.edu">Scratch</a>. Small applications to control motors and indicator lights can be created instantly by means of mini-switches and phototransistors. Due to the variety of opportunities offered by the Scratch programming language, large programs may be developed.<br/><br/>Experimental extensions to Scratch, such as FTScratch, use the development version <a href="http://scratchx.org/">ScratchX</a>.',
 		
-		howtoText:			'1) Connect ROBO LT to the PC<br/>2) <a href="http://www.fischertechnik.de/home/downloads/Computing.aspx">Download</a> and install drivers<br/>3) <a href="http://ftscratch.github.io/ROBO-LT/bin/FTScratch.exe">Download</a> and run FTScratch (requires .NET Framework 4, usually available on Windows PCs)<br/>4) <a href="http://scratchx.org/?url=http://ftscratch.github.io/ROBO-LT/src/ext.js#scratch">Open</a> ScratchX with the extension (Firefox or Chrome)<br/>5) Get Started!',
+		howtoText:			'1) Connect ROBO LT to the PC<br/>2) <a href="http://www.fischertechnik.de/home/downloads/Computing.aspx">Download</a> and install drivers<br/>3) <a href="http://ftscratch.github.io/ROBO-LT/bin/FTScratch.exe">Download</a> and run FTScratch (<small>requires .NET Framework 4, usually installed on Windows PCs</small>)<br/>4) <a href="http://scratchx.org/?url=http://ftscratch.github.io/ROBO-LT/src/ext.js#scratch">Open</a> ScratchX with the extension (<small>Firefox or Chrome</small>)<br/>5) Get Started!',
 		
 		blockDesc:			'Block description',
 		blockDescText:		'For compatibility reasons, the following blocks are based on ROBO PRO Light. The language version of the blocks (German / English) is based on the browser settings.',
 		
-		onButton:			'This event triggers when a mini-switche on input I1 (I2, I3) is pressed (or released).',
+		onButton:			'This event triggers when a mini-switch on input I1 (I2, I3) is pressed (or released).',
 		onLightBarrier:		'This event triggers as soon as a light barrier opens (closes), i.e., the light beam between an indicator light and a phototransistor on input I3 (I1, I2) is disrupted (or not disrupted). The indicator light or any other light source may be on output M1 (M2). ',
 		
 		getButton:			'This block polls the status (pressed or released) of a mini-switch on input I1 (I2, I3). This block can be combined with blocks under the headings "Operators" and "Control".',
