@@ -62,6 +62,52 @@ var Lang = {
 			closes:					'closes',
 			forward:				'forward',
 			backwards:				'backwards',
+		},
+		
+		// spanish translation
+		es: {
+			evtButton:             'interruptor %m.inputs %m.buttonStates',
+			evtLightBarrier:       'barrera de luz %m.inputs %m.lightBarrierStates',
+	 
+			setLampVal:            'fijar lámpara %m.outputs a %m.outputValues',
+			setMotorValDir:        'fijar motor %m.outputs a %m.outputValues %m.outputDirections',
+			setMotorDir:           'fijar motor %m.outputs a %m.outputDirections',
+			setOutputVal:          'fijar valor de salida %m.outputs a %n',
+			reset:                 'reinicio',
+		   
+			getButton:             'interruptor %m.inputs presionado?',
+			getLightBarrier:       'barrera de luz %m.inputs closed?',
+			getOutputValue:        'obtener valor de salida %m.outputs',
+		   
+			pressed:               'presionado',
+			released:              'liberado',
+			opens:                 'encendida',
+			closes:                'apagada',
+			forward:               'adelante',
+			backwards:             'atrás',
+		},
+		
+		// catalan translation
+		ca: {
+			evtButton:             'interruptor %m.inputs %m.buttonStates',
+			evtLightBarrier:       'barrera de llum %m.inputs %m.lightBarrierStates',
+	 
+			setLampVal:            'fixa làmpada %m.outputs a %m.outputValues',
+			setMotorValDir:        'fixa motor %m.outputs a %m.outputValues %m.outputDirections',
+			setMotorDir:           'fixa motor %m.outputs a %m.outputDirections',
+			setOutputVal:          'fixa valor de sortida %m.outputs a %n',
+			reset:                 'reinicialitzar',
+		   
+			getButton:             'interruptor %m.inputs pitjat?',
+			getLightBarrier:       'barrera de llum %m.inputs closed?',
+			getOutputValue:        'obtén valor de sortida %m.outputs',
+		   
+			pressed:               'pitjat',
+			released:              'alliberat',
+			opens:                 'encesa',
+			closes:                'apagada',
+			forward:               'endavant',
+			backwards:             'endarrere',
 		}
 		
 	},	
