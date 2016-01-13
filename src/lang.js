@@ -75,8 +75,8 @@ var Lang = {
 			setOutputVal:          'fijar valor de salida %m.outputs a %n',
 			reset:                 'reinicio',
 		   
-			getButton:             'interruptor %m.inputs presionado?',
-			getLightBarrier:       'barrera de luz %m.inputs closed?',
+			getButton:             'interruptor %m.inputs presionada?',
+			getLightBarrier:       'barrera de luz %m.inputs apagada?',
 			getOutputValue:        'obtener valor de salida %m.outputs',
 		   
 			pressed:               'presionado',
@@ -99,7 +99,7 @@ var Lang = {
 			reset:                 'reinicialitzar',
 		   
 			getButton:             'interruptor %m.inputs pitjat?',
-			getLightBarrier:       'barrera de llum %m.inputs closed?',
+			getLightBarrier:       'barrera de llum %m.inputs apagada?',
 			getOutputValue:        'obtén valor de sortida %m.outputs',
 		   
 			pressed:               'pitjat',
