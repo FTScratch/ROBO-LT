@@ -108,7 +108,76 @@ var Lang = {
 			closes:                'apagada',
 			forward:               'endavant',
 			backwards:             'endarrere',
-		}
+		},
+		
+		// french translation
+		fr: {
+			evtButton:				'bouton %m.inputs %m.buttonStates',
+			evtLightBarrier:		'barrière optique %m.inputs %m.lightBarrierStates', 
+			
+			setLampVal:				'mettre la lampe %m.outputs à %m.outputValues',
+			setMotorValDir:			'régler le moteur %m.outputs à %m.outputValues %m.outputDirections',
+			setMotorDir:			'paramétrer le moteur %m.outputs pour %m.outputDirections',
+			setOutputVal:			'mettre la sortie %m.outputs à %n',
+			reset:					'remise à zero',
+			
+			getButton:				'bouton %m.inputs appuyé?',
+			getLightBarrier:		'barrière optique %m.inputs coupée?',
+			getOutputValue:			'lire la valeur de la sortie %m.outputs',  
+			
+			pressed:				'appuyé',
+			released:				'relâché',
+			opens:					'ouvert',
+			closes:					'fermé',
+			forward:				'avancer',
+			backwards:				'reculer',		
+		},
+		
+		// italian translation
+		it: {
+			evtButton:				'pulsante %m.inputs %m.buttonStates',
+			evtLightBarrier:		'barriera fotoelettrica %m.inputs %m.lightBarrierStates',
+ 
+			setLampVal:				'imposta lampada %m.outputs a %m.outputValues',
+			setMotorValDir:			'imposta motore %m.outputs a %m.outputValues %m.outputDirections',
+			setMotorDir:			'imposta motore %m.outputs a %m.outputDirections',
+			setOutputVal:			'imposta uscita %m.outputs a %n',
+			reset:					'resetta',
+        
+			getButton:				'pulsante %m.inputs premuto?',
+			getLightBarrier:		'barriera fotoelettrica %m.inputs chiusa?',
+			getOutputValue:			'rileva valore da uscita %m.outputs',
+        
+			pressed:				'premuto',
+			released:				'rilasciato',
+			opens:					'si apre',
+			closes:					'si chiude',
+			forward:				'avanti',
+			backwards:				'indietro',
+		},
+		
+		// portuguese translation
+		pt: {
+			evtButton:				'botão %m.inputs %m.buttonStates',
+			evtLightBarrier:		'célula fotoelétrica %m.inputs %m.lightBarrierStates',
+ 
+			setLampVal:				'definir lâmpada %m.outputs para %m.outputValues',
+			setMotorValDir:			'definir motor %m.outputs para %m.outputValues %m.outputDirections',
+			setMotorDir:			'definir motor %m.outputs para %m.outputDirections',
+			setOutputVal:			'definir saída %m.outputs para %n',
+			reset:					'reiniciar',
+        
+			getButton:				'botão %m.inputs pressionado?',
+			getLightBarrier:		'célula fotoelétrica %m.inputs fechada?',
+			getOutputValue:			'obter valor da saída %m.outputs',
+        
+			pressed:				'pressionado',
+			released:				'liberado',
+			opens:					'abre',
+			closes:					'fecha',
+			forward:				'para frente',
+			backwards:				'para trás',
+		},
 		
 	},	
 	

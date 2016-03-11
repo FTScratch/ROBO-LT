@@ -6,6 +6,7 @@
 		<meta charset="utf-8">
 		<link rel="stylesheet" href="www/style.css" type="text/css" media="screen" />
 		<script src="www/func.js" type="text/javascript"></script>
+		<script src="www/lang.js" type="text/javascript"></script>		
 	</head>
 	
 	<body>
@@ -16,6 +17,10 @@
 			<div style="float:right">
 				<a href="?lang=de"/><img src="www/de/de.png"></a>
 				<a href="?lang=en"/><img src="www/en/us.png"></a>
+				<a href="?lang=fr"/><img src="www/fr/fr.png"></a>
+				<a href="?lang=it"/><img src="www/it/it.png"></a>
+				<a href="?lang=es"/><img src="www/es/es.png"></a>
+				<a href="?lang=pt"/><img src="www/pt/pt.png"></a>
 			</div>
 			<h1 id="about"></h1>
 			<img style="float:right; margin-left: 20px;" width="128" src="http://www.fischertechnik.de/resourceimage.aspx?raid=6849"/>
@@ -23,7 +28,7 @@
 		</section>
 		
 		<section>
-			<h1 id="howto">HowTo</h1>
+			<h1 id="howto">howto</h1>
 			<div id="howtoText"></div>
 		</section>
 		
@@ -34,30 +39,28 @@
 		
 		<script type="text/javascript">
 		
-			Lang.set('about', 'about');
-			Lang.set('aboutText', 'aboutText');
-			Lang.set('howtoText', 'howtoText');
-			Lang.set('blockDesc', 'blockDescsTitle');
-			Lang.set('blockDescText', 'blockDescsText');
+			Builder.setText('about', 'about');
+			Builder.setText('aboutText', 'aboutText');
+			
+			Builder.setText('howto', 'howto');
+			Builder.setText('howtoText', 'howtoText');
+			
+			Builder.setText('blockDesc', 'blockDescsTitle');
+			Builder.setText('blockDescText', 'blockDescsText');
 		
-			getBlock('onButton');
-			getBlock('onLightBarrier');
-			//getBlock('onChange');
+			Builder.addBlock('onButton');
+			Builder.addBlock('onLightBarrier');
 			
-			getBlock('getButton');
-			getBlock('getLightBarrier');
-			//getBlock('getSensor');
-			getBlock('getOutput');
+			Builder.addBlock('getButton');
+			Builder.addBlock('getLightBarrier');
+			Builder.addBlock('getOutput');
 			
-			getBlock('setLampVal');
-			getBlock('setMotorValDir');
-			getBlock('setMotorDir');
-			getBlock('setOutputVal');
-			//getBlock('setOutput_1');
-			//getBlock('setOutput_2');
-			//getBlock('setOutputReverse');
-			//getBlock('setOutputToggle');
-			getBlock('reset');
+			Builder.addBlock('setLampVal');
+			Builder.addBlock('setMotorValDir');
+			Builder.addBlock('setMotorDir');
+			Builder.addBlock('setOutputVal');
+
+			Builder.addBlock('reset');
 			
 		</script>
 		
